@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtVerse AI - Scan the Past. Discover Its Story.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0f685c;
+            --text-primary: #000000;
+            --text-secondary: #45474a;
+            --bg-primary: #ffffff;
+            --bg-light: #f1eded;
+            --bg-light-2: #fcf8f8;
+            --accent-gold: #e5c372;
+            --accent-gold-light: rgba(229, 195, 114, 0.1);
+            --border-color: rgba(0, 0, 0, 0.05);
+            --shadow-sm: 0px 1px 1px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            background: linear-gradient(90deg, #fcf8f8 0%, #fcf8f8 100%), linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            padding: 80px 20px 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            height: 552px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+            width: 100%;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-gradient {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+        }
+
+        .hero-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 31.195px 32px 32px 32px;
+        }
+
+        .hero-heading {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            word-break: break-word;
+        }
+
+        .hero-heading p {
+            margin: 0;
+            line-height: 38.4px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            height: 56px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0px 12px 20px rgba(15, 104, 92, 0.3);
+        }
+
+        .btn-primary img {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn-primary-text {
+            display: inline-block;
+        }
+
+        /* QUICK ACTIONS GRID */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .action-button {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            min-height: 114.80px;
+        }
+
+        .action-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #f5f1f1;
+        }
+
+        .action-button img {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        .action-button-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.7px;
+            color: var(--text-primary);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* FEATURED SECTION */
+        .featured-section {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 100%;
+        }
+
+        .featured-header {
+            display: flex;
+            align-items: center;
+            gap: 30.093px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .featured-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 33.6px;
+        }
+
+        .featured-accent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 10.09px;
+            height: 10.09px;
+        }
+
+        .featured-accent::before {
+            content: '';
+            width: 8px;
+            height: 6.27px;
+            background-color: var(--accent-gold);
+            transform: rotate(45deg);
+        }
+
+        /* CARD SECTION */
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            width: 100%;
+        }
+
+        .card {
+            background-color: var(--bg-light-2);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            isolation: isolate;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 256px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--accent-gold-light);
+            padding: 3px 8px;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.36px;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 41.6px;
+            margin-top: 4px;
+        }
+
+        .card-description {
+            font-family: 'Manrope', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 25.6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            margin-top: 8px;
+        }
+
+        /* HEADER - TOP APP BAR MOBILE */
+        .header-mobile {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 390px;
+            height: auto;
+            backdrop-filter: blur(12px);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .header-mobile.desktop-hidden {
+            display: none;
+        }
+
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -1.6px;
+            white-space: nowrap;
+        }
+
+        .header-icon {
+            width: 16px;
+            height: 16px;
+        }
+
+        .header-menu {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* BOTTOM NAV BAR */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 390px;
+            height: auto;
+            backdrop-filter: blur(12px);
+            background-color: rgba(255, 255, 255, 0);
+            box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 100;
+            padding-bottom: 0.51px;
+        }
+
+        .bottom-nav.desktop-hidden {
+            display: none;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            position: relative;
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-item.active {
+            color: var(--text-primary);
+        }
+
+        .nav-item.inactive {
+            color: rgba(69, 71, 74, 0.6);
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.36px;
+        }
+
+        .nav-center-button {
+            position: absolute;
+            bottom: 20px;
+            width: 56px;
+            height: 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-center-button:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-center-bg {
+            position: absolute;
+            width: 56px;
+            height: 64px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 64"><path d="M28 0C28 0 0 0 0 28C0 44 12 64 28 64C44 64 56 44 56 28C56 0 28 0 28 0Z" fill="%230f685c" opacity="0.9"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        }
+
+        .nav-center-icon {
+            width: 22px;
+            height: 19.5px;
+            z-index: 2;
+        }
+
+        .nav-center-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.36px;
+            color: rgba(69, 71, 74, 0.6);
+            z-index: 2;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 80px 20px 180px 20px;
+                gap: 40px;
+            }
+
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .featured-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+
+            .card-title {
+                font-size: 28px;
+            }
+
+            .hero-heading {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 80px 16px 180px 16px;
+                gap: 40px;
+            }
+
+            .hero-section {
+                height: 400px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .action-button {
+                padding: 20px;
+            }
+
+            .hero-heading {
+                font-size: 24px;
+                line-height: 32px;
+            }
+
+            .hero-content {
+                padding: 20px 20px 24px 20px;
+            }
+
+            .card-title {
+                font-size: 24px;
+                line-height: 33.6px;
+            }
+
+            .featured-title {
+                font-size: 20px;
+            }
+
+            .card-image {
+                height: 200px;
+            }
+
+            .card-content {
+                padding: 16px;
+            }
+
+            .header-mobile {
+                width: 100%;
+                max-width: 100vw;
+            }
+
+            .bottom-nav {
+                width: 100%;
+                max-width: 100vw;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .header-mobile.desktop-hidden,
+            .bottom-nav.desktop-hidden {
+                display: none !important;
+            }
+
+            .mobile-only {
+                display: none;
+            }
+
+            .main-content {
+                padding: 80px 40px 100px 40px;
+            }
+        }
+
+        /* UTILITY CLASSES */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .gap-4 {
+            gap: 16px;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-auto {
+            height: auto;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER - TOP APP BAR MOBILE -->
+    <header class="header-mobile desktop-hidden">
+        <button class="nav-menu-btn" aria-label="Menu">
+            <svg class="header-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+        </button>
+        <h1 class="header-logo">ArtVerse AI</h1>
+        <button class="nav-search-btn" aria-label="Search">
+            <svg class="header-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+        </button>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-image">
+                <img src="https://www.figma.com/api/mcp/asset/f55511c1-871f-4467-8371-1aac705fa4c3.png" alt="Ancient artifact collection">
+            </div>
+            <div class="hero-gradient"></div>
+            <div class="hero-content">
+                <div class="hero-heading">
+                    <p>Scan the Past.</p>
+                    <p>Discover Its Story.</p>
+                </div>
+                <button class="btn-primary" aria-label="Scan an Object">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span class="btn-primary-text">Scan an Object</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- QUICK ACTIONS SECTION -->
+        <section class="quick-actions">
+            <button class="action-button" data-action="scan">
+                <img src="https://www.figma.com/api/mcp/asset/37def9c4-3853-41d5-8d52-65b81fc87cf7.svg" alt="Scan icon">
+                <span class="action-button-text">Scan</span>
+            </button>
+            <button class="action-button" data-action="upload">
+                <img src="https://www.figma.com/api/mcp/asset/be39a9f2-705c-442d-917f-f381c33c67de.svg" alt="Upload icon">
+                <span class="action-button-text">Upload</span>
+            </button>
+            <button class="action-button" data-action="explore3d">
+                <img src="https://www.figma.com/api/mcp/asset/c1f64602-8e54-459f-990d-c42e33a050aa.svg" alt="3D explore icon">
+                <span class="action-button-text">Explore 3D</span>
+            </button>
+            <button class="action-button" data-action="historian">
+                <img src="https://www.figma.com/api/mcp/asset/627925c7-f117-45d2-aedf-3e1e5d47db8d.svg" alt="Ask historian icon">
+                <span class="action-button-text">Ask Historian</span>
+            </button>
+        </section>
+
+        <!-- FEATURED SECTION -->
+        <section class="featured-section">
+            <div class="featured-header">
+                <h2 class="featured-title">
+                    Discover Something From<br>the Past
+                </h2>
+                <div class="featured-accent"></div>
+            </div>
+
+            <!-- CARDS CONTAINER -->
+            <div class="card-container">
+                <!-- CARD 1 -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="https://www.figma.com/api/mcp/asset/a1919849-b5c0-47ea-9d6d-3df9ee3b6108.png" alt="Egyptian Sculpture">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Ancient Egypt</span>
+                            <span class="tag">Basalt</span>
+                        </div>
+                        <h3 class="card-title">Egyptian Sculpture</h3>
+                        <p class="card-description">A breathtaking piece representing the divine authority of the pharaohs, characterized by its rigid posture and...</p>
+                    </div>
+                </article>
+
+                <!-- CARD 2 -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="https://www.figma.com/api/mcp/asset/03dbdb79-2b31-4081-beef-3a6256c42053.png" alt="Renaissance Painting">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-tags">
+                            <span class="tag">Renaissance</span>
+                            <span class="tag">Oil on Canvas</span>
+                        </div>
+                        <h3 class="card-title">Renaissance<br>Painting</h3>
+                        <p class="card-description">An exquisite example of sfumato technique, blending tones seamlessly to create a lifelike, atmospheric...</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTTOM NAVIGATION BAR - MOBILE -->
+    <nav class="bottom-nav desktop-hidden" aria-label="Mobile navigation">
+        <div class="nav-item active">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            <span class="nav-text">Home</span>
+        </div>
+
+        <div class="nav-item inactive">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+            </svg>
+            <span class="nav-text">Explore</span>
+        </div>
+
+        <!-- CENTER BUTTON -->
+        <div class="nav-center-button">
+            <div class="nav-center-bg"></div>
+            <svg class="nav-center-icon" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="1">
+                <rect x="4" y="4" width="16" height="16" rx="2"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+            </svg>
+            <span class="nav-center-text">Scan</span>
+        </div>
+
+        <div class="nav-item inactive">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="nav-text">Collections</span>
+        </div>
+
+        <div class="nav-item inactive">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+            </svg>
+            <span class="nav-text">Profile</span>
+        </div>
+    </nav>
+
+    <script>
+        // Action Button Handlers
+        document.querySelectorAll('.action-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.dataset.action;
+                console.log('Action clicked:', action);
+                // Add your action handlers here
+            });
+        });
+
+        // Navigation Handler
+        document.querySelectorAll('.nav-item, .nav-center-button').forEach(navItem => {
+            navItem.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.classList.add('inactive');
+                });
+                if (this.classList.contains('nav-item')) {
+                    this.classList.remove('inactive');
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Primary Button Handler
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            console.log('Scan an Object clicked');
+            // Add your scan logic here
+        });
+
+        // Header Menu Handler
+        const menuBtn = document.querySelector('.nav-menu-btn');
+        if (menuBtn) {
+            menuBtn.addEventListener('click', function() {
+                console.log('Menu opened');
+                // Add your menu logic here
+            });
+        }
+
+        // Search Button Handler
+        const searchBtn = document.querySelector('.nav-search-btn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function() {
+                console.log('Search opened');
+                // Add your search logic here
+            });
+        }
+
+        // Responsive Image Loading
+        function optimizeImages() {
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', function() {
+                        this.style.opacity = '1';
+                    });
+                }
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.3s ease-in';
+            });
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            optimizeImages();
+            
+            // Smooth scroll behavior
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
